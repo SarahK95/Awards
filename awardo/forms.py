@@ -36,3 +36,4 @@ class ProfileUpdateForm(forms.ModelForm):
         widgets = {
           'bio': forms.Textarea(attrs={'rows':2, 'cols':10,}),
         }                
+                

@@ -32,7 +32,7 @@ def signup(request):
     return render (request, 'registration/registration_form.html', {'form':form})       
 
 
-@login_required(login_url='/accounts/login')
+@login_required(login_url='/accounts/login/')
 def search_projects(request):
     if 'project' in request.GET and request.GET["project"]:
         search_term = request.GET.get("project")
@@ -54,7 +54,7 @@ def get_project(request, id):
     
     return render(request, 'project.html', {'project':project}) 
 
-@login_required(login_url='/accounts/login')
+@login_required(login_url='/accounts/login/')
 def new_project(request):
     current_user = request.user
     if request.method =='POST':
@@ -68,3 +68,19 @@ def new_project(request):
         form = NewProjectForm()
     return render(request, 'new_project.html', {'form':form})        
         
+        
+@login_required(login_url='/accounts/login/') 
+def profile(request):
+    current_user = request.user
+    Owner = current_user
+    projects = Projects.get_by_owner(Owner)
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            profile = form.save(commit= False)
+            profile.save()
+        return redirect('profile')
+    else:
+        form = ProfileUpdateForm()
+        return render(request, 'registration/profile.html', {'form':form, 'projects':projects})    
+           
