@@ -58,6 +58,19 @@ class Projects(models.Model):
     def get_by_owner(cls, Owner):
         projects = cls.objects.filter(Owner=Owner)
         return projects
+    
+
+class Reviews(models.Model):
+    design = models.IntegerField(default=0)
+    usability = models.IntegerField(default=0)
+    content = models.IntegerField(default=0)
+    project = models.ForeignKey(Projects, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.project
+        
+        
         
         
             
