@@ -1,4 +1,5 @@
 import datetime as dt
+from email import message
 from django.shortcuts import render
 from .models import *
 from .forms import *
@@ -28,5 +29,19 @@ def signup(request):
         
     else:
         form = SignUpForm()
-    return render (request, 'registration/registration_form.html', {'form':form})        
+    return render (request, 'registration/registration_form.html', {'form':form})       
+
+
+@login_required(login_url='/accounts/login')
+def search_projects(request):
+    if 'project' in request.GET and request.GET["project"]:
+        search_term = request.GET.get("project")
+        searched_projects = Projects.search_projects(search_term)
+        message = f'{search_term}'
+        return render (request, 'search.html', {'message':message, 'projects':searched_projects})
+    
+    else :
+        message = "You haven't searched anything"
+        return render(request, 'search.html',{'message':message})
+    
     
