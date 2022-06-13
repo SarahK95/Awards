@@ -1,8 +1,9 @@
-from email.mime import image
-from tkinter import CASCADE
 from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User
+from django.db.models import ObjectDoesNotExist
+from django.http import Http404
+
 
 # Create your models here.
 class Profile(models.Model):
@@ -41,6 +42,14 @@ class Projects(models.Model):
         return projects
     
     @classmethod
+    def get_project(request, id):
+        try:
+            project = Projects.objects.get(pk = id)
+        except  ObjectDoesNotExist:
+            raise Http404()
+        return project  
+    
+    @classmethod
     def search_projects(cls, search_term):
         projects = cls.objects.filter(title__icontains=search_term)
         return projects    
@@ -49,6 +58,7 @@ class Projects(models.Model):
     def get_by_owner(cls, Owner):
         projects = cls.objects.filter(Owner=Owner)
         return projects
+        
         
             
         
