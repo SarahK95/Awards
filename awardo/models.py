@@ -9,3 +9,12 @@ class Profile(models.Model):
     bio = models.TextField(blank=True)
     prof_pic = models.ImageField(upload_to = 'prof_pics/', blank=True)
     
+    def save_profile(self):
+        self.save()
+        
+    def delete_profile(self):
+        self.delete()
+        
+    def __str__(self):
+        return self.bio        
+    
