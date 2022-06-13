@@ -3,7 +3,8 @@ import datetime as dt
 from django.contrib.auth.models import User
 from django.db.models import ObjectDoesNotExist
 from django.http import Http404
-
+from star_ratings.models import Rating
+from PIL import Image
 
 # Create your models here.
 class Profile(models.Model):
@@ -60,15 +61,15 @@ class Projects(models.Model):
         return projects
     
 
-class Reviews(models.Model):
-    design = models.IntegerField(default=0)
-    usability = models.IntegerField(default=0)
-    content = models.IntegerField(default=0)
-    project = models.ForeignKey(Projects, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+# class Reviews(models.Model):
+#     design = models.IntegerField(default=0)
+#     usability = models.IntegerField(default=0)
+#     content = models.IntegerField(default=0)
+#     project = models.ForeignKey(Projects, on_delete=models.CASCADE)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
-    def __str__(self):
-        return self.project
+#     def __str__(self):
+#         return self.project
         
         
         
