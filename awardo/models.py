@@ -27,11 +27,11 @@ class Projects(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     link = models.URLField()
     
-    # def save_project(self):
-    #     self.save()
+    def save_project(self):
+        self.save()
         
-    # def delete_project(self):
-    #     self.delete()
+    def delete_project(self):
+        self.delete()
         
             
         
