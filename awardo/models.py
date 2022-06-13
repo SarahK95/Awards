@@ -26,7 +26,7 @@ class Projects(models.Model):
     descriptin = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     link = models.URLField()
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    Owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     owner_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, blank=True, default='1')
     
     def save_project(self):
@@ -44,6 +44,11 @@ class Projects(models.Model):
     def search_projects(cls, search_term):
         projects = cls.objects.filter(title__icontains=search_term)
         return projects    
+    
+    @classmethod
+    def get_by_owner(cls, Owner):
+        projects = cls.objects.filter(Owner=Owner)
+        return projects
         
             
         
