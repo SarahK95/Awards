@@ -2,10 +2,10 @@ from django import forms
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from registration.forms import SignUpForm
+from registration.forms import RegistrationForm
 from crispy_forms.helper import FormHelper
 
-class SignUpForm(SignUpForm):
+class  RegisterForm(RegistrationForm):
     first_name = forms.CharField(max_length=255)
     last_name = forms.CharField(max_length=255)
 
@@ -16,7 +16,7 @@ class SignUpForm(SignUpForm):
         
     def __init__(self, *args, **kwargs):
         
-        super(SignUpForm, self).__init__(*args, **kwargs) 
+        super( RegisterForm, self).__init__(*args, **kwargs) 
         self.helper = FormHelper()
         for fieldname in ['username', 'password1', 'password2']:
             self.fields[fieldname].help_text = None

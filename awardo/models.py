@@ -3,7 +3,7 @@ import datetime as dt
 from django.contrib.auth.models import User
 from django.db.models import ObjectDoesNotExist
 from django.http import Http404
-from star_ratings.models import Rating
+# from star_ratings.models import Rating
 from PIL import Image
 
 # Create your models here.
@@ -19,7 +19,11 @@ class Profile(models.Model):
         self.delete()
         
     def __str__(self):
-        return self.bio        
+        return self.bio   
+    
+    
+         
+   
     
     
 class Projects(models.Model):
@@ -28,8 +32,8 @@ class Projects(models.Model):
     description = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     link = models.URLField()
-    Owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    owner_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, blank=True, default='1')
+    Author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    # author_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, blank=True, default='1')
     
     def save_project(self):
         self.save()
@@ -48,7 +52,9 @@ class Projects(models.Model):
             project = Projects.objects.get(pk = id)
         except  ObjectDoesNotExist:
             raise Http404()
-        return project  
+        return project 
+     
+    
     
     @classmethod
     def search_projects(cls, search_term):
@@ -56,9 +62,16 @@ class Projects(models.Model):
         return projects    
     
     @classmethod
-    def get_by_owner(cls, Owner):
-        projects = cls.objects.filter(Owner=Owner)
+    def get_by_author(cls, Author):
+        projects = cls.objects.filter(Author=Author)
         return projects
+    
+    def __str__(self):
+        return self.title
+    
+    
+    # class Meta:
+    #     ordering = ['title'] 
     
 
 # class Reviews(models.Model):

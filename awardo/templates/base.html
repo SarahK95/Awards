@@ -1,16 +1,16 @@
-{%load static%}
+{% load static %}
 
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+  
 
   {% if title %}
-  <title>Award {{title}}</title>
+  <title>Awards {{title}}</title>
   {% else %}
-    <title> Award </title>
+    <title> Awards </title>
   {% endif %}
  
 
@@ -34,30 +34,35 @@
 
 <body class="grey lighten-5">
     {% include "navbar.html" %}
+
     {% block content %} 
     <div class="jumbotron jumbotron-fluid bg-light mb-1 pb-3 pt-3">
         <div class="">
-          <h2 class="display-5 text-center font-weight-bold text-white">Awards</h2>
+          <h2 class="display-5 text-center font-weight-bold text-white">Welcome to Awwards</h2>
         </div>
-    </div>
+      </div>
     
     {%endblock%}
 
+  
+
+
+
     {% block scripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- <!-- JQuery -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
-  <script type="text/javascript" src="{% static 'script.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <!-- JQuery -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <!-- Bootstrap tooltips -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+      <!-- Bootstrap core JavaScript -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <!-- MDB core JavaScript -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+      <script type="text/javascript" src="{% static 'script.js' %}"></script>
 
 
-{% endblock %}
+    {% endblock %}
 
 <div class="pt-4 mt-4 mb-4 pb-4"></div>
     <footer class="page-footer font-small special-color-dark pt-4">

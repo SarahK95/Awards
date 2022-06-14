@@ -18,9 +18,9 @@ def home(request):
     date = dt.date.today()
     return render(request, 'index.html', {"date": date, "projects":projects})
 
-def signup(request):
+def register(request):
     if request.method=='POST':
-        form= SignUpForm(request.POST)
+        form=  RegisterForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -28,7 +28,7 @@ def signup(request):
             return redirect('/')
         
     else:
-        form = SignUpForm()
+        form =  RegisterForm()
     return render (request, 'registration/registration_form.html', {'form':form})       
 
 
@@ -52,7 +52,7 @@ def get_project(request, id):
     except ObjectDoesNotExist:
         raise Http404()
     
-    return render(request, 'profile.html', {'project':project}) 
+    return render(request, 'project.html', {'project':project}) 
 
 @login_required(login_url='/accounts/login/')
 def new_project(request):
@@ -61,7 +61,7 @@ def new_project(request):
         form = NewProjectForm(request.POST, request.FILES)
         if form.is_valid():
             project = form.save(commit=False)
-            project.Owner = current_user
+            project.Author = current_user
             project.save()
         return redirect ('home')
     else:
@@ -72,8 +72,8 @@ def new_project(request):
 @login_required(login_url='/accounts/login/') 
 def profile(request):
     current_user = request.user
-    Owner = current_user
-    projects = Projects.get_by_owner(Owner)
+    Author = current_user
+    projects = Projects.get_by_author(Author)
     if request.method == 'POST':
         form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():

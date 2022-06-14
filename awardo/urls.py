@@ -9,8 +9,7 @@ urlpatterns = [
     url(r'^project/(\d+)', views.get_project, name='searched_projects'),
     url(r'^new/project$', views.new_project, name='new-project'),
     url(r'^accounts/profile/$', views.profile, name='profile'),
-    url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
-    
+ 
 ]
 
 if settings.DEBUG:
