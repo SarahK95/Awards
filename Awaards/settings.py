@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,6 +44,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'star_ratings',
     'crispy_forms',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -80,8 +85,12 @@ WSGI_APPLICATION = 'Awaards.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'awards',
+        'USER': 'benben',
+        'PASSWORD':'award123',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -139,6 +148,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dx5snvr9v',
+    'API_KEY': '699548787373722',
+    'API_SECRET': 'xcUQpAcozux-1bZHB7_hE0YZSNo'
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

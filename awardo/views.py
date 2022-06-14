@@ -52,7 +52,7 @@ def get_project(request, id):
     except ObjectDoesNotExist:
         raise Http404()
     
-    return render(request, 'index.html', {'project':project}) 
+    return render(request, 'profile.html', {'project':project}) 
 
 @login_required(login_url='/accounts/login/')
 def new_project(request):

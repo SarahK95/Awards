@@ -1,0 +1,68 @@
+{%extends 'base.html'%}
+{% load bootstrap4%}
+{% load ratings %}
+{% block content %}
+<div class="container">
+  <div class="row mt-4"></div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card card-cascade wider reverse">
+        <div class="view view-cascade overlay">
+          {% if projects.image %}
+          <img class="card-img-top" src="{{projects.image.url}}" alt="{{ projects.title }}"
+           style="max-height: 500px;">
+          {% else %}
+          <img class="card-img-top" src="https://source.unsplash.com/1600x900/?fun,vacation"
+            alt="{{ projects.title }}">
+          {% endif %}
+          <a href="#!">
+            <div class="mask rgba-white-slight">
+              <div class="d-flex justify-content-end">
+                <a href="{{projects.link}}" target="_blank" title="Visit site"> <button type="button"
+                    class="btn btn-light px-3"><i class="fas fa-directions" aria-hidden="true"></i></button>
+                </a></div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card-body card-body-cascade text-center">
+            <h2 class="font-weight-bold"><a>{{ projects.title }}</a></h2>
+            <h4 class="">{{ projects.description }}</h4>
+            <div>
+              <a href="{{projects.link}}" target="_blank" title="Visit site">
+                <button type="button" class="btn btn-default font-weight-bold px-3">Visit Site</button></a>
+            </div>
+            <div class="mt-2 pt-2">
+              <h4>Vote</h4>
+            </div>
+            {%ratings projects %}
+  
+  
+            <div class="row">
+
+            
+  
+              <div class="col-lg-6 dark-text"> <small> Date Posted: {{projects.pub_date|date:"d /m/Y"}} </small> </div>
+          
+          </div>
+
+  
+        </div>
+       
+        <div class="card mt-5 pb-2 mb-2">
+          <div class="card-footer bg-white">
+            <hr>
+            <small class="font-weight-bold ml-2"><img src="{{ projects.Owner.profile.prof_pic.url }}" alt=""
+                class="rounded-circle img-fluid mr-1" style="width: 50px;">
+              BY {{projects.Owner.first_name|upper}} 
+             
+          </div>
+  
+        </div>
+  
+      </div>
+  
+    </div>  
+  </div>
+  {% endblock %}
+ 
