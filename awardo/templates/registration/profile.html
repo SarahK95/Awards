@@ -1,0 +1,40 @@
+{%extends "registration/base.html"%}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container-fluid mb-4 pb-4" style="height: 100%;">
+    <div class "row">
+        <div class = "col-lg-2"></div>
+        <div class = "col-lg-8 mt-4 pt-2">
+            <div class="pb-2">
+                {% if user.profile.prof_pic %}
+                <img src="{{ user.profile.prof_pic.url }}" alt="" class="d-flex justify-content-t rounded-circle mb-1 img-fluid mr-1" style="width: 150px;">
+                {% else %}
+                <img src="" alt="" class="d-flex justify-content-t rounded-circle mb-1 img-fluid mr-1" style="width: 150px;">
+                {% endif %}
+                <h4> <span class="font-weight-bold"> Username:</span>  {{user.username}} </h4>
+                <p> <span class="font-weight-bold"> Email:</span>  {{user.email}} </p>
+                <p> <span class="font-weight-bold"> Bio:</span> {{ user.profile.bio}}  </p>
+                <button class="btn btn-md btn-outline-info font-weight-bold" data-toggle="modal" data-target="#profile"> Edit Profile</button>
+            </div>
+            <hr>
+            <h4 class="font-weight-bold">My Projects</h4>
+            <hr>
+            {% if projects %}
+            {% for project_item in projects%}
+            <a href="/project/{{project_item.id}}"><img src="{{ project_item.image.url }}" alt="" class="rounded img-fluid mr-1 pt-1 pb-1" style="width: 300px; height: 300px;"></a>
+            {% endfor %}
+            {% else %}
+            <p>You have not submitted any projects</p>
+            {% endif %}
+
+        </div>
+        <!-- empty div -->
+        <div class="col-lg-2"></div>
+    
+      </div>
+    </div>
+
+
+
+
+
