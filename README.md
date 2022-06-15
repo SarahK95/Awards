@@ -5,7 +5,7 @@
 ## Project Description
 
 An application allows a user to post a project he/she has created and get it reviewed by his/her peers.
-![landing page]()
+![landing page](https://github.com/SarahK95/Awards/blob/master/awards.png)
 
 ### User story
 - User can sign in
