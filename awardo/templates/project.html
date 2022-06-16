@@ -59,6 +59,18 @@
           <!-- {{s_start_user}} -->
         </div>
         <!-- Card content -->
+        <div class="col text-center">
+          <form class="rate-form" action="" method="POST" id="{{object.id}}">
+              {% csrf_token %}
+              <button type="submit" class="fa fa-star checked fa-3x my-btn" id="first"></button>
+              <button type="submit" class="fa fa-star checked fa-3x my-btn" id="second"></button>
+              <button type="submit" class="fa fa-star checked fa-3x my-btn" id="third"></button>
+              <button type="submit" class="fa fa-star checked fa-3x my-btn" id="fourth"></button>
+              <button type="submit" class="fa fa-star checked fa-3x my-btn" id="fifth"></button>
+          </form>
+          <br>
+          <div id="confirm-box"></div>
+      </div>
 
       </div>
       <!-- Card -->
@@ -74,7 +86,7 @@
 
           <small class="font-weight-bold ml-2"><img src="{{ project.Author.profile.prof_pic.url }}" alt=""
               class="rounded-circle img-fluid mr-1" style="width: 50px;">
-             {{project.Author|upper}} 
+             BY {{project.Author|upper}} 
             
         </div>
 

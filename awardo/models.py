@@ -5,6 +5,7 @@ from django.db.models import ObjectDoesNotExist
 from django.http import Http404
 # from star_ratings.models import Rating
 from PIL import Image
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class Profile(models.Model):
@@ -33,6 +34,12 @@ class Projects(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     link = models.URLField()
     Author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    score = models.IntegerField(default=0,
+            validators=[
+            MaxValueValidator(5),
+            MinValueValidator(0),
+        ]
+    )                    
     # author_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, blank=True, default='1')
     
     def save_project(self):

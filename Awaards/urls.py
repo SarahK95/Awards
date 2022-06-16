@@ -18,6 +18,7 @@ from django.contrib import admin
 
 from django.contrib.auth import views
 from django.contrib.auth import views as auth_views
+from awardo.views import main_view, rate_image
 
 # from registration.backends.simple.views import RegistrationView
 # from awardo.forms import RegisterForm
@@ -30,6 +31,9 @@ urlpatterns = [
     url(r'', include('awardo.urls')),
     # url(r'^accounts/register/$',RegistrationView.as_view(form_class=RegisterForm),name='registration_register',),
     url(r'^accounts/', include('registration.backends.simple.urls')),
-    url(r'^logout/',auth_views.LogoutView.as_view(),{'next_page':'/'})
+    url(r'^logout/',auth_views.LogoutView.as_view(),{'next_page':'/'}),
+    
+    url(r'', main_view, name="main-view"),
+    url(r'^rate/', rate_image, name='rate-view'),
     
 ]

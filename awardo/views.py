@@ -10,6 +10,7 @@ from django.http import HttpResponse, Http404
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -83,4 +84,24 @@ def profile(request):
     else:
         form = ProfileUpdateForm()
         return render(request, 'registration/profile.html', {'form':form, 'projects':projects})    
+    
+    
+    
+def main_view(request):
+        obj = Projects.objects.filter(score=0).order_by("?").first()
+        context ={
+        'object': obj}
+        return render(request, 'project.html', context)
+
+
+def rate_image(request):
+    if request.method == 'POST':
+        el_id = request.POST.get('el_id')
+        val = request.POST.get('val')
+        print(val)
+        obj = Projects.objects.get(id=el_id)
+        obj.score = val
+        obj.save()
+        return JsonResponse({'success':'true', 'score': val}, safe=False)
+    return JsonResponse({'success':'false'})
            
